@@ -46,4 +46,8 @@ public class LoginFragment extends AboxFragment {
         ((MainActivity)getActivity()).replaceFragment(new HomeFragment());
     }
 
+    @Override
+    protected boolean isTabVisible() {
+        return false;
+    }
 }

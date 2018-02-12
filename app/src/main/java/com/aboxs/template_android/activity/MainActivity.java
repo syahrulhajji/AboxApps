@@ -335,18 +335,21 @@ public class MainActivity extends AboxActivity implements AboxFragment.FragmentI
     }
     @Override
     public void onFragmentInteraction(String title, boolean isTabSolid, boolean isTabVisible) {
-        title = getString(R.string.app_name);
-        if(title!=null)
+//        title = getString(R.string.app_name);
+        if(title!=null){
             tvTitle.setText(title);
+        }toolbarTitle.setVisibility(isTabVisible?View.VISIBLE:View.GONE);
         if(isTabSolid) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 toolbarTitle.setBackgroundColor(getResources().getColor(R.color.colorGray, getTheme()));
             } else {
                 toolbarTitle.setBackgroundColor(getResources().getColor(R.color.colorGray));
             }
+            toolbarTitle.setVisibility(View.VISIBLE);
             DrawerLayout.LayoutParams layoutParam = (DrawerLayout.LayoutParams) navigationMenu.getLayoutParams();
             layoutParam.setMargins(layoutParam.leftMargin,0,layoutParam.rightMargin,layoutParam.bottomMargin);
         }else {
+            toolbarTitle.setVisibility(View.GONE);
             DrawerLayout.LayoutParams layoutParam = (DrawerLayout.LayoutParams) navigationMenu.getLayoutParams();
             layoutParam.setMargins(layoutParam.leftMargin,layoutParam.topMargin+getToolbarHeight(),layoutParam.rightMargin,layoutParam.bottomMargin);
         }

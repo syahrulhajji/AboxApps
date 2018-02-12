@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorLavender"
+    android:background="@color/colorDimGray"
     tools:context="com.aboxs.template_android.fragment.HomeFragment">
     <LinearLayout
         android:visibility="gone"

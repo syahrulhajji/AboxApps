@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="all">
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:checked="false"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="@string/home" />
         <item
-            android:id="@+id/nav_transfer"
-            android:checked="false"
-            android:icon="@drawable/ic_transfer"
-            android:title="Transfer" />
-        <item
-            android:id="@+id/nav_biller_payment"
-            android:checked="false"
-            android:icon="@drawable/ic_transfer"
-            android:title="Biller Payment" />
+            android:id="@+id/nav_sub_e_money"
+            android:icon="@drawable/ic_home"
+            android:title="@string/e_money">
+            <menu>
+                <group>
+                    <item
+                        android:id="@+id/nav_transfer"
+                        android:icon="@drawable/ic_transfer"
+                        android:title="@string/transfer" />
+                    <item
+                        android:id="@+id/nav_biller_payment"
+                        android:icon="@drawable/ic_transfer"
+                        android:title="@string/biller_payment" />
+                </group>
+            </menu>
+        </item>
         <item
             android:id="@+id/nav_logout"
-            android:checked="false"
             android:icon="@drawable/ic_exit"
-            android:title="Logout" />
+            android:title="@string/logout" />
     </group>
 
 </menu>

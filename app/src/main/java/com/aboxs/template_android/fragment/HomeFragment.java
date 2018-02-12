@@ -91,4 +91,8 @@ public class HomeFragment extends AboxFragment {
         mAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    protected String getTitle() {
+        return getString(R.string.home);
+    }
 }

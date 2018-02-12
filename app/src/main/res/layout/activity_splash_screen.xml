@@ -6,10 +6,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@color/colorDimGray"
     tools:context="com.aboxs.template_android.activity.SplashScreenActivity">
     <ImageView
-
+        android:src="@drawable/ic_aboxs"
         android:layout_width="match_parent"
         android:layout_height="150dp" />
     <LinearLayout
@@ -34,14 +34,14 @@
     </LinearLayout>
     <TextView
         android:textSize="15dp"
-        android:textColor="@color/colorGray"
+        android:textColor="@color/colorWhite"
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please Wait..."/>
+        android:text="@string/please_wait"/>
     <TextView
-        android:text="Created by Syahrul Hajji"
-        android:textColor="@color/colorGray"
+        android:text="@string/created_by"
+        android:textColor="@color/colorWhite"
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

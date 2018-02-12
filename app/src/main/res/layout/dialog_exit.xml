@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="113dp"
         android:gravity="center"
-        android:text="Do You Want to Exit ? "
+        android:text="@string/dialog_do_you_want_to_exit"
         android:textColor="@color/colorGray"
         android:textSize="15dp" />
     <LinearLayout
@@ -31,7 +31,7 @@
             android:layout_gravity="bottom"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_plot"
-            android:text="No"
+            android:text="@string/no"
             android:textColor="@color/colorWhite"/>
 
         <Button
@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_plot"
-            android:text="Yes"
+            android:text="@string/yes"
             android:layout_gravity="bottom"
             android:textColor="@color/colorWhite"/>
     </LinearLayout>

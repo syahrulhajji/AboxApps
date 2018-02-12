@@ -44,7 +44,7 @@ public class SplashScreenActivity extends AboxActivity {
                         }
                     });
                     try {
-                        Thread.sleep(50);
+                        Thread.sleep(90);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

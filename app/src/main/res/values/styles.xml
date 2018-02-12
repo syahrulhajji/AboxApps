@@ -13,4 +13,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="BarLoading" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 </resources>
