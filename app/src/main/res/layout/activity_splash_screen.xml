@@ -8,10 +8,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     tools:context="com.aboxs.template_android.activity.SplashScreenActivity">
-    <TextView
-        android:gravity="center"
-        android:textSize="30dp"
-        android:text="@string/app_name"
+    <ImageView
+        android:src="@drawable/aboxs"
         android:layout_width="match_parent"
         android:layout_height="150dp" />
     <LinearLayout

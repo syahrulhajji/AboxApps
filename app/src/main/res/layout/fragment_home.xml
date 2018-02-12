@@ -6,6 +6,7 @@
     android:background="@color/colorLavender"
     tools:context="com.aboxs.template_android.fragment.HomeFragment">
     <LinearLayout
+        android:visibility="gone"
         android:layout_marginBottom="5dp"
         android:layout_weight="1"
         android:gravity="center"
@@ -32,15 +33,18 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <View
+        android:visibility="gone"
         android:layout_marginBottom="5dp"
         android:background="@color/colorGray"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_home"
+        android:visibility="gone"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+
+
 </LinearLayout>

@@ -50,14 +50,15 @@ public class HomeFragment extends AboxFragment {
         sharePreference = new SharePreference(getContext());
         utility = new Utility();
         ((MainActivity)getActivity()).showMenuSlide();
-        mAdapter = new AdapterHome(homeModelList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        rvHome.setLayoutManager(mLayoutManager);
-        rvHome.setItemAnimator(new DefaultItemAnimator());
-        rvHome.setAdapter(mAdapter);
+
+//        mAdapter = new AdapterHome(homeModelList);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+//        rvHome.setLayoutManager(mLayoutManager);
+//        rvHome.setItemAnimator(new DefaultItemAnimator());
+//        rvHome.setAdapter(mAdapter);
 
         showImage();
-        dataHome();
+//        dataHome();
 
         return view;
     }
