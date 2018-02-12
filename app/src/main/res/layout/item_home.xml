@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/dialog_oval"
+    android:layout_marginRight="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="75dp">
+    <TextView
+        android:id="@+id/tv_status"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="S"
+        android:background="@drawable/design_circle"
+        android:maxLength="1"
+        android:textSize="30dp"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/colorWhite"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+    <LinearLayout
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_name"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:gravity="center|left"
+            android:text="Syahrul Hajji"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_description"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorRebecaCaPurple"
+            android:gravity="center|left"
+            android:text="Transfer to Haira"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_amount"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:gravity="center|left"
+            android:text="Rp. 2.500.000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>
