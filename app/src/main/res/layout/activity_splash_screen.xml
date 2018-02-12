@@ -9,7 +9,7 @@
     android:background="@color/colorWhite"
     tools:context="com.aboxs.template_android.activity.SplashScreenActivity">
     <ImageView
-        android:src="@drawable/aboxs"
+
         android:layout_width="match_parent"
         android:layout_height="150dp" />
     <LinearLayout
