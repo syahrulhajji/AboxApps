@@ -70,10 +70,11 @@ public class MainActivity extends AboxActivity implements AboxFragment.FragmentI
     private Utility utility;
     final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
 
-    @BindView(R.id.navigation_menu) NavigationView navigationMenu;
+    @BindView(R.id.navigation_view) NavigationView navigationView;
     @BindView(R.id.drawer_page) DrawerLayout drawerPage;
     @BindView(R.id.toolbar_title) Toolbar toolbarTitle;
     @BindView(R.id.tv_title) TextView tvTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,7 @@ public class MainActivity extends AboxActivity implements AboxFragment.FragmentI
         Utility utility = new Utility();
 
         mResources = getResources();
-        View hView =  navigationMenu.getHeaderView(0);
+        View hView =  navigationView.getHeaderView(0);
         ivProfile = (ImageView)hView.findViewById(R.id.iv_profile);
         TextView tvName = (TextView)hView.findViewById(R.id.tv_name);
         mBitmap = BitmapFactory.decodeResource(mResources,R.drawable.ic_me);
@@ -129,9 +130,8 @@ public class MainActivity extends AboxActivity implements AboxFragment.FragmentI
                 builder.show();
             }
         });
-
-        navigationMenu.inflateMenu(R.menu.item_menu);
-        navigationMenu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView.inflateMenu(R.menu.item_menu);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.isChecked()){item.setChecked(false);}
@@ -139,6 +139,8 @@ public class MainActivity extends AboxActivity implements AboxFragment.FragmentI
                 drawerPage.closeDrawers();
                 switch (item.getItemId()){
                     case R.id.nav_home:
+                        return true;
+                    case R.id.nav_sub_e_money:
                         return true;
                     case R.id.nav_logout:
                         inflater = getLayoutInflater();
@@ -335,10 +337,10 @@ public class MainActivity extends AboxActivity implements AboxFragment.FragmentI
     }
     @Override
     public void onFragmentInteraction(String title, boolean isTabSolid, boolean isTabVisible) {
-//        title = getString(R.string.app_name);
         if(title!=null){
             tvTitle.setText(title);
-        }toolbarTitle.setVisibility(isTabVisible?View.VISIBLE:View.GONE);
+        }
+        toolbarTitle.setVisibility(isTabVisible?View.VISIBLE:View.GONE);
         if(isTabSolid) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 toolbarTitle.setBackgroundColor(getResources().getColor(R.color.colorGray, getTheme()));
@@ -346,11 +348,11 @@ public class MainActivity extends AboxActivity implements AboxFragment.FragmentI
                 toolbarTitle.setBackgroundColor(getResources().getColor(R.color.colorGray));
             }
             toolbarTitle.setVisibility(View.VISIBLE);
-            DrawerLayout.LayoutParams layoutParam = (DrawerLayout.LayoutParams) navigationMenu.getLayoutParams();
+            DrawerLayout.LayoutParams layoutParam = (DrawerLayout.LayoutParams) navigationView.getLayoutParams();
             layoutParam.setMargins(layoutParam.leftMargin,0,layoutParam.rightMargin,layoutParam.bottomMargin);
         }else {
             toolbarTitle.setVisibility(View.GONE);
-            DrawerLayout.LayoutParams layoutParam = (DrawerLayout.LayoutParams) navigationMenu.getLayoutParams();
+            DrawerLayout.LayoutParams layoutParam = (DrawerLayout.LayoutParams) navigationView.getLayoutParams();
             layoutParam.setMargins(layoutParam.leftMargin,layoutParam.topMargin+getToolbarHeight(),layoutParam.rightMargin,layoutParam.bottomMargin);
         }
     }
@@ -362,16 +364,16 @@ public class MainActivity extends AboxActivity implements AboxFragment.FragmentI
 
     public void hideMenuSlide(){
         drawerPage.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        navigationMenu.setVisibility(View.GONE);
-        navigationMenu.setEnabled(false);
+        navigationView.setVisibility(View.GONE);
+        navigationView.setEnabled(false);
         toolbarTitle.setVisibility(View.GONE);
     }
 
     public void showMenuSlide(){
         drawerPage.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-        navigationMenu.setEnabled(true);
+        navigationView.setEnabled(true);
         toolbarTitle.setVisibility(View.VISIBLE);
-        navigationMenu.setVisibility(View.VISIBLE);
+        navigationView.setVisibility(View.VISIBLE);
     }
 
     public void replaceFragment(Fragment fragment) {

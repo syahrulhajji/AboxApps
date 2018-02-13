@@ -7,21 +7,16 @@
             android:title="@string/home" />
         <item
             android:id="@+id/nav_sub_e_money"
-            android:icon="@drawable/ic_home"
-            android:title="@string/e_money">
-            <menu>
-                <group>
-                    <item
-                        android:id="@+id/nav_transfer"
-                        android:icon="@drawable/ic_transfer"
-                        android:title="@string/transfer" />
-                    <item
-                        android:id="@+id/nav_biller_payment"
-                        android:icon="@drawable/ic_transfer"
-                        android:title="@string/biller_payment" />
-                </group>
-            </menu>
-        </item>
+            android:icon="@drawable/ic_e_money"
+            android:title="@string/e_money"/>
+        <item
+            android:id="@+id/nav_office"
+            android:icon="@drawable/ic_e_money"
+            android:title="@string/office"/>
+        <item
+            android:id="@+id/nav_social_media"
+            android:icon="@drawable/ic_social_media"
+            android:title="@string/social_media"/>
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_exit"

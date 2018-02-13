@@ -1,6 +1,9 @@
 package com.aboxs.template_android.fragment;
 
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,12 +17,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aboxs.template_android.R;
 import com.aboxs.template_android.activity.MainActivity;
 import com.aboxs.template_android.adapter.AdapterHome;
+import com.aboxs.template_android.adapter.AdapterKota;
 import com.aboxs.template_android.database.SharePreference;
 import com.aboxs.template_android.model.HomeModel;
+import com.aboxs.template_android.model.PilihKotaModel;
 import com.aboxs.template_android.util.Utility;
 
 import java.util.ArrayList;
@@ -27,6 +33,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.aboxs.template_android.util.AboxApps.getAPI;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,13 +46,10 @@ import butterknife.ButterKnife;
 public class HomeFragment extends AboxFragment {
     SharePreference sharePreference;
     Utility utility;
-    @BindView(R.id.rv_home)RecyclerView rvHome;
-    @BindView(R.id.iv_profile) ImageView ivProfile;
-    @BindView(R.id.tv_name) TextView tvName;
-    @BindView(R.id.tv_amount) TextView tvAmount;
-    private Bitmap mBitmap;
-    private List<HomeModel> homeModelList = new ArrayList<>();
-    private AdapterHome mAdapter;
+    private AdapterKota adapterKota;
+    AlertDialog alertDialogKota;
+    @BindView(R.id.tv_select_your_city)TextView tvSelectYourCity;
+    LayoutInflater inflater;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,46 +60,53 @@ public class HomeFragment extends AboxFragment {
         utility = new Utility();
         ((MainActivity)getActivity()).showMenuSlide();
 
-//        mAdapter = new AdapterHome(homeModelList);
-//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-//        rvHome.setLayoutManager(mLayoutManager);
-//        rvHome.setItemAnimator(new DefaultItemAnimator());
-//        rvHome.setAdapter(mAdapter);
-
-        showImage();
-//        dataHome();
-
         return view;
     }
 
-    private void showImage(){
-        if(sharePreference.getImage().equals("image")){}
-        else {
-            mBitmap = (BitmapFactory.decodeFile(sharePreference.getImage()));
-            RoundedBitmapDrawable drawable = utility.createCircleImage(mBitmap);
-            ivProfile.setImageDrawable(drawable);
-        }
+    @OnClick(R.id.tv_select_your_city)
+    void selectCity(){
+        final Call<PilihKotaModel> pilihKotaModelCall = getAPI().pilih_kota();
+        final ProgressDialog pd = new ProgressDialog(getContext());
+        pd.setMessage("Please Wait..");
+        pd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                pilihKotaModelCall.cancel();
+            }
+        });
+        pd.show();
+        pilihKotaModelCall.enqueue(new Callback<PilihKotaModel>() {
+            @Override
+            public void onResponse(Call<PilihKotaModel> call, Response<PilihKotaModel> response) {
+
+                if(response.body().getStatus().equals("sukses")){
+                    inflater  = getActivity().getLayoutInflater();
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    View viewStatus = inflater.inflate(R.layout.dialog_choice,null);
+                    builder.setView(viewStatus);
+                    alertDialogKota = builder.create();
+                    alertDialogKota.show();
+                    final RecyclerView rvStatus = (RecyclerView)viewStatus.findViewById(R.id.rv_choice);
+                    TextView tvTitle = (TextView)viewStatus.findViewById(R.id.tv_title);
+                    tvTitle.setText("Select Your City");
+
+                    adapterKota = new AdapterKota(response.body().getDataKota(),tvSelectYourCity);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                    rvStatus.setLayoutManager(layoutManager);
+                    rvStatus.setItemAnimator(new DefaultItemAnimator());
+                    rvStatus.setAdapter(adapterKota);
+
+                }else {
+                    Toast.makeText(getContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PilihKotaModel> call, Throwable t) {
+                Toast.makeText(getContext(),"Server Is Down",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-
-    private void dataHome (){
-        HomeModel homeModel = new HomeModel("S", "Syahrul Hajji", "Transfer to Haira","Rp. 2.500.000,-");
-        homeModelList.add(homeModel);
-
-        homeModel = new HomeModel("S", "Syahrul Hajji", "Transfer to Ais","Rp. 5.500.000,-");
-        homeModelList.add(homeModel);
-
-        homeModel = new HomeModel("S", "Syahrul Hajji", "Transfer to Maya","Rp. 3.500.000,-");
-        homeModelList.add(homeModel);
-
-        homeModel = new HomeModel("S", "Syahrul Hajji", "Debit Account","Rp. 7.500.000,-");
-        homeModelList.add(homeModel);
-
-        homeModel = new HomeModel("F", "Syahrul Hajji", "Transfer to Lala","Rp. 1.500.000,-");
-        homeModelList.add(homeModel);
-
-        mAdapter.notifyDataSetChanged();
-    }
-
     @Override
     protected String getTitle() {
         return getString(R.string.home);

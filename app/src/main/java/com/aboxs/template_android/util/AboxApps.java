@@ -23,7 +23,7 @@ public class AboxApps extends MultiDexApplication {
 
     }
     public static AboxApi getAPI() {
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(AboxApi.SERVER).client(getClient())
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(AboxApi.SERVER_JADWAL_SHOLAT).client(getClient())
                 .addConverterFactory(GsonConverterFactory.create()).build();
         return retrofit.create(AboxApi.class);
     }

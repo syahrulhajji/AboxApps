@@ -48,11 +48,9 @@ public class AboxFragment extends Fragment {
                             });
                         }
                     });
-
                     view.setTag(true);
                 }
             }
-
         }
     }
 

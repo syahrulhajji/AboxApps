@@ -32,7 +32,7 @@
         </FrameLayout>
 
         <android.support.design.widget.NavigationView
-            android:id="@+id/navigation_menu"
+            android:id="@+id/navigation_view"
             android:layout_width="250dp"
             style="@style/ThemeNavigation"
             android:layout_height="match_parent"
@@ -41,7 +41,8 @@
             app:itemTextColor="@color/colorWhiteSmoke"
             app:itemIconTint="@color/colorOrange"
             android:background="@color/colorDimGray"
-            android:layout_gravity="start" />
+            android:layout_gravity="start" >
+        </android.support.design.widget.NavigationView>
     </android.support.v4.widget.DrawerLayout>
 
 </LinearLayout>

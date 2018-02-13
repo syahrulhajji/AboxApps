@@ -8,6 +8,9 @@ import android.graphics.Paint;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by Abox's on 11/02/2018.
  */
@@ -42,5 +45,12 @@ public class Utility {
         roundedBitmapDrawable.setAntiAlias(true);
 
         return roundedBitmapDrawable;
+    }
+
+    private boolean isValidPassword(String pass) {
+        String Password = "^(?=.*\\d)(?=.*[a-z]).{8,20}";
+        Pattern pattern = Pattern.compile(Password);
+        Matcher matcher = pattern.matcher(pass);
+        return matcher.matches();
     }
 }
